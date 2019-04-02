@@ -117,7 +117,17 @@ try{
 	}
 
 
-
+function triercin(){
+		$sql="SElECT * From reclamation ORDER BY cin ";
+		$db = config::getConnexion();
+		try{
+		$list=$db->query($sql);
+		return $list;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
 
 
 

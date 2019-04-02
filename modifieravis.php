@@ -1,36 +1,60 @@
 <?php
-include "C:/wamp64/www/nn/core/avisC.php";
+include "entities/avis.php";
+include "core/avisC.php";
  
-                          if(isset($_POST['butt']))
-                          {
 
-                              $cinn= $_POST['cinn'];
-                              $commentaire= $_POST['commentaire'];
-                              $type= $_POST['type'];
-                           
-                            
+if (isset($_GET['cinn'])){
+	$avisC=new avisC();
+    $result=$avisC->recupereravisc($_GET['cinn']);
 
-                            $qry= new avisC();
-                            $qry->modifier($cinn,$commentaire,$type);
+	foreach($result as $row){
+		$cinn=$row['cinn'];
+		$commentaire=$row['commentaire'];
+		$type=$row['type'];
+		?>
 
-                          }
-                          //header('location: indexmd1.php');
+
+<form action="modifieravis.php" id="contact-form" name ="f" method="post">
+									
+										<div class="form_group half" >
+										<input type="text" name="cinn" required="required"  placeholder="votre cinn" 
+
+										value="<?PHP echo $cinn ?>"
+										 >
+										
+									</div>
+									
+							
+									
+									<div class="form_group">
+										<input type="text" required="required" name="type"  placeholder="type" value="<?PHP echo $type ?>">
+
+										
+									</div>
+									<div class="form_group">
+										<input style="width:560px; height:200px " name="commentaire"  value="<?PHP echo $commentaire ?>">
+
+									</div>
+									<div class="form_group">
+										<div class="btn_wrapper" >
+											<input class="btn_two" type="submit" value="modifier" name="modifier" >
+											
+										</div>
+
+									</div>
+									<input type="hidden" name="cin_ini" value="<?PHP echo $_GET['cinn'];?>">
+
+</form>
+
+<?PHP
+	}
+}
+
+if (isset($_POST['modifier'])){
+	$avis=new avis($_POST['cinn'],$_POST['commentaire'],$_POST['type']);
+	$avisC=new avisC();
+	$avisC->modifieravis($avis,$_POST['cin_ini']);
+	echo "<script>alert('la modification est effectutée avec succes')</script>";
+	header('Location: afficheravis.php');
+}
 ?>
-
-<form action="modifieravis.php" method="post">   
-                            Nom:
-                          <input style="height: 35px" placeholder="cinn" name="cinn" type="text" value="<?php echo $cinn; ?>" required="">
-                        <br>
-                            Prenom:
-                          <input style="height: 35px" placeholder="commentaire" name="commentaire"  type="text" value="<?php echo $commentaire; ?>">
-                           <br>
-                          Mail:
-                          <input style="height: 35px" placeholder="type" name="type" value="<?php echo $type; ?>"  type="text" >
-                          
-                         
-                          <div class="sign-up">
-
-                           <center><input type="submit" name="butt" value="modifier"/></center> 
-
-                          </div>
-                            </form>

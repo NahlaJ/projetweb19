@@ -269,13 +269,9 @@ else { ?>
 
 <TR> 
 
-<TD><?php echo $row['numero'] ?></TD> 
-<TD><?php echo $row['sujet'] ?> </TD> 
-<TD> <?php echo $row['type1'] ?></TD> 
-<TD> <?php echo $row['description'] ?> </TD> 
-<TD> <?php echo $row['mail'] ?> </TD> 
-<TD> <?php echo $row['date_actuelle'] ?></TD> 
-<TD> <?php echo $row['etat'] ?> </TD> 
+<TD><?php echo $row['cinn'] ?></TD> 
+<TD><?php echo $row['commentaire'] ?> </TD> 
+<TD> <?php echo $row['type'] ?></TD>  
 
 	
 <TD> <button type="submit" class="btn btn-info" ><a href="modifierReclamation.php?numero=<?php echo $row['numero'];?>">

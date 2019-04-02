@@ -3,6 +3,15 @@
 session_start ();  
  
 // On récupère nos variables de session
+ 
+
+?>
+
+
+<?PHP
+include "C:/wamp64/www/nn/core/reclamationC.php";
+$reclamationC=new reclamationC();
+$listereclamation=$reclamationC->triercin();
 
 ?>
 
@@ -12,12 +21,44 @@ session_start ();
 <!DOCTYPE html>
 <html>
 <head>
-<?php
-include "C:/wamp64/www/nn/entities/avis.php";
-include "C:/wamp64/www/nn/core/avisC.php";
-$omaima=new avisC();
-$tab=$omaima->afficheravis();
-?>
+
+
+<!--script>
+function showUser(str) 
+{
+    if (str=="") {
+        document.getElementById("txtHint").innerHTML ="";
+       
+  xmlhttp.open("GET","get.php?id="+str,true);
+        xmlhttp.send(); 
+       
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("txtHint").innerHTML = this.responseText;
+                 document.getElementById("table-hide").innerHTML ="";
+                
+            }
+
+
+        };
+        
+         xmlhttp.open("GET","get.php?id="+str,true);
+        xmlhttp.send(); 
+    }
+
+
+}
+</script-->
+
+
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>SAV</title>
@@ -28,12 +69,11 @@ $tab=$omaima->afficheravis();
 	<link href="css1/popup.css" rel="stylesheet">
 	<link href="css1/recherch.css" rel="stylesheet">
 	
-	
+	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 	
 </head>
-<body>
-	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+<body>	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
@@ -51,9 +91,8 @@ $tab=$omaima->afficheravis();
 									<img alt="image" class="img-circle" src="http://placehold.it/40/30a5ff/fff">
 									</a>
 									<div class="message-body"><small class="pull-right">3 mins ago</small>
-										<a href="#"><strong>John Doe</strong> commented on <strong>your photo</strong>.</a><br />
-										<small class="text-muted">1:24 pm - 25/03/2015</small>
-									</div>
+										<a href="#"><strong>John Doe</strong> commented on <strong>your photo</strong>.</a>
+									<br /><small class="text-muted">1:24 pm - 25/03/2015</small></div>
 								</div>
 							</li>
 							<li class="divider"></li>
@@ -74,9 +113,11 @@ $tab=$omaima->afficheravis();
 							</li>
 						</ul>
 					</li>
+
 					<li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-						<em class="fa fa-bell"></em><span class="label label-info">5</span>
-					        </a>
+						<em class="fa fa-bell"></em><span class="label label-info"> <?php echo $liste ?></span>
+					</a>
+
 						<ul class="dropdown-menu dropdown-alerts">
 							<li><a href="#">
 								<div><em class="fa fa-envelope"></em> 1 New Message
@@ -106,17 +147,17 @@ $tab=$omaima->afficheravis();
 			<div class="profile-usertitle">
 				<div class="profile-usertitle-name">Username</div>
 				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
-			</div>		<form role="search">
-
+			</div>
 			<div class="clear"></div>
 		</div>
 		<div class="divider"></div>
+		<form role="search">
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Search">
 			</div>
 		</form>
 		<ul class="nav menu">
-			< <li class=""><a href="../../ghaylene web/dashs/afficherclient.php"><em class="fa fa-clone">&nbsp;</em>Gestion Client</a></li>
+			<li class=""><a href="../../ghaylene web/dashs/afficherclient.php"><em class="fa fa-clone">&nbsp;</em>Gestion Client</a></li>
       <li><a href="../../ghaylene web/dashs/afficherclientfidel2.php"><em class="fa fa-clone">&nbsp;</em>Gestion Client fidele</a></li>
       <li><a href="../../projet_dashboard_CRUD/CRUD_Offre/views/jeux.php"><em class="fa fa-clone">&nbsp;</em>Concours</a></li>
       <li><a href="../../projet_dashboard_CRUD/CRUD_Offre/views/offre.php"><em class="fa fa-clone">&nbsp;</em>Offre</a></li>
@@ -127,13 +168,14 @@ $tab=$omaima->afficheravis();
       <li class=""><a href="../../livraison/CRUD/views/afficherL.php"><em class="fa fa-clone">&nbsp;</em> Gestion Livreurs</a></li>
       
 			
-			<li class=""><a href="index.php"><em class="fa fa-toggle-off">&nbsp;</em> Reclamation</a></li>
-			<li class="active"><a href="avisBack.php"><em class="fa fa-toggle-off">&nbsp;</em> Avis</a></li>
+			
+			<li class="active"><a href="index.php"><em class="fa fa-toggle-off">&nbsp;</em> Reclamation</a></li>
+			<li class=""><a href="avisBack.php"><em class="fa fa-toggle-off">&nbsp;</em> Avis</a></li>
 			<li class=""><a href="http://localhost/sav/livechat/php/app.php?admin"><em class="fa fa-toggle-off">&nbsp;</em> forum</a></li>
 		</ul>
 		<li><a href="../../projet_dashboard_CRUD/CRUD_Offre/views/logout.php"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
 			
-	</div><!--/.sidebar-->
+	</div><!--/.sidebar-->	
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
@@ -147,19 +189,30 @@ $tab=$omaima->afficheravis();
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">AVIS</h1>
+				<h1 class="page-header">R&eacuteclamations</h1>
 			</div>
-		</div><div id="hacker-list">
-              				<a href="trieravis.php"><span class="sort" data-sort="name" >Sort by type</span></a>	
-						</div>
-			
+		</div>
+		<div id="hacker-list">
 
-	
+
+<!--a href="statistique.php"><span class="sort" data-sort="name"> Reclamation par type  </span></a> <br--> 
+<!--a href="statistique2.php"><span class="sort" data-sort="name"> Reclamation par mois  </span></a><br--> 
+
+		<!--a href="trier.php"><span class="sort" data-sort="name"> Trier par type  </span></a><br>
+		<br/></div-->
+
+		<form action="rectrier.php"> 
+<input type="submit" name="trier" value="trier par cin" style="float: right;margin-right: 50px;" class="btn btn-primary btn-sm">
+</form>
+
+
+
+
 		<form action="notif.php" method="POST">
 			<div id="table-hide">
 	<TABLE class='table'> 
 
-<center><h1> Liste des avis </h1>  </center>
+<center><h1> Liste des réclamations </h1>  </center>
 
 <form class="form-wrapper" style="margin-top: 5px;
     padding-top: 25px;
@@ -174,21 +227,24 @@ $tab=$omaima->afficheravis();
 <div id="txtHint"> </div>
 
 <TR > 
-<TH> cinn   </TH> 
-<TH> commentaire  </TH>
-<TH> type </TH> 
+<TH> cin   </TH> 
+<TH> mail  </TH>
+<TH> Sujet </TH> 
+<TH> message  </TH> 
 
 <TH>  </TH> 
-<TH>  <center><font color="#C8AD7F">Gérer les avis </font></center></TH> 
-<?php foreach($tab  as $row) {
-if($row['cinn']==0) {?> 
+<TH>  <center><font color="#C8AD7F">Gérer les réclmations </font></center></TH> 
+
+<?php foreach($listereclamation  as $row) {
+if($row['cin']==0) {?> 
 </TR> 
 
 <TR style="background-color:#ffe6e6;""> 
 
-<TD><?php echo $row['cinn'] ?></TD> 
-<TD> <?php echo $row['commentaire'] ?></TD> 
-<TD><?php echo $row['type'] ?> </TD> 
+<TD><?php echo $row['cin'] ?></TD> 
+<TD> <?php echo $row['mail'] ?></TD> 
+<TD><?php echo $row['sujet'] ?> </TD> 
+<TD> <?php echo $row['message'] ?></TD> 
 	
 <TD> ></TD> 
    
@@ -197,15 +253,15 @@ if($row['cinn']==0) {?>
 
         <td> 
 		<a id="cd-popup-trigger"><input type="button" name="supprimer" value="supprimer" class="btn btn-danger"></a></td>
-	<form method="POST" action="supprimeravis.php">
-	 <input type="hidden" value="<?PHP echo $row['cinn']; ?>" name="cinn">
+	<form method="POST" action="supprimerReclamation.php">
+	 <input type="hidden" value="<?PHP echo $row['cin']; ?>" name="cin">
 
 		<div class="cd-popup" role="alert">
                 <div class="cd-popup-container">
-                    <p>voulez-vous vraiment supprimer cet avis ?</p>
+                    <p>voulez-vous vraiment supprimer cette reclamation ?</p>
                     <ul class="cd-buttons">
                         <li><input type="submit" name="supprimer"  value="OUI" ></li>
-                        <li><a href="afficheravis.php" >NON</a></li>
+                        <li><a href="afficherReclamation.php" >NON</a></li>
                     </ul>
                     <a href="#0" class="cd-popup-close img-replace">Close</a>
                 </div> <!-- cd-popup-container -->
@@ -218,9 +274,10 @@ else { ?>
 <TR> 
 
 
-<TD><?php echo $row['cinn'] ?></TD> 
-<TD> <?php echo $row['commentaire'] ?></TD> 
-<TD><?php echo $row['type'] ?> </TD> 
+<TD><?php echo $row['cin'] ?></TD> 
+<TD> <?php echo $row['mail'] ?></TD> 
+<TD><?php echo $row['sujet'] ?> </TD> 
+<TD> <?php echo $row['message'] ?></TD> 
 
 
 
@@ -231,16 +288,16 @@ else { ?>
 
 
    		<td>
-   	<form method="POST" action="supprimeravis.php"><a id="cd-popup-trigger"> 
+   	<form method="POST" action="supprimerReclamation.php"><a id="cd-popup-trigger"> 
 			<input type="button" name="supprimer" value="supprimer" class="btn btn-danger"></a>
-			<input type="hidden" value="<?PHP echo $row['cinn']; ?>" name="cinn">
+			<input type="hidden" value="<?PHP echo $row['cin']; ?>" name="cin">
 		</td>
 		   <div class="cd-popup" role="alert">
                 <div class="cd-popup-container">
-                    <p>voulez-vous vraiment supprimer cet avis ?</p>
+                    <p>voulez-vous vraiment supprimer cette reclamation ?</p>
                     <ul class="cd-buttons">
                         <li><input type="submit" name="supprimer"  value="OUI" ></li>
-                        <li><a href="avisBack.php">NON</a></li>
+                        <li><a href="index.php">NON</a></li>
                     </ul>
                     <a href="#0" class="cd-popup-close img-replace">Close</a>
                 </div> <!-- cd-popup-container -->
@@ -252,7 +309,11 @@ else { ?>
 
 <?php
 } }?>
-
+<form method="POST" action="notif.php">
+<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+	<td><input type="submit" name="Check" value="Check!"></td>
+</tr>	
+</form>
 
 </TABLE>
 </div>

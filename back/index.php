@@ -196,8 +196,13 @@ function showUser(str)
 
 <!--a href="statistique.php"><span class="sort" data-sort="name"> Reclamation par type  </span></a> <br--> 
 <!--a href="statistique2.php"><span class="sort" data-sort="name"> Reclamation par mois  </span></a><br--> 
-		<a href="trier.php"><span class="sort" data-sort="name"> Trier par type  </span></a><br>
-		<br/></div>
+
+		<!--a href="trier.php"><span class="sort" data-sort="name"> Trier par type  </span></a><br>
+		<br/></div-->
+
+		<form action="rectrier.php"> 
+<input type="submit" name="trier" value="trier par cin" style="float: right;margin-right: 20px;margin-top: 60px;" class="btn btn-primary btn-sm">
+</form>
 
 
 
@@ -241,7 +246,6 @@ if($row['cin']==0) {?>
 	
 <TD> ></TD> 
    
-   <TD> </TD>
 
 
         <td> 

@@ -183,7 +183,7 @@ function showUser(str) {
 			</div>
 		</div>
 		<div id="hacker-list">
-              				<a href="trieravis.php"><span class="sort" data-sort="name" >Sort by type</span></a>	
+              				<a href="trieravis.php"><span class="sort" data-sort="cinn" >Sort by cinn</span></a>	
 						</div>
 			
 	
@@ -191,10 +191,9 @@ function showUser(str) {
 <center><h1> Liste des avis </h1>  </center>
 
 <TR > 
-<TH> Numero   </TH>
-<TH> type  </TH> 
+<TH> cinn   </TH>
 <TH> Commentaire  </TH> 
-<TH> date </TH> 
+<TH> type  </TH> 
  
 <TH>  <center><font color="#C8AD7F">Gérer les avis </font></center></TH> 
 <?php foreach($tab  as $row) {?>
@@ -203,10 +202,9 @@ function showUser(str) {
 
 <TR > 
 
-<TD><?php echo $row['numero'] ?></TD> 
- <TD> <?php echo $row['type'] ?></TD> 
+<TD><?php echo $row['cinn'] ?></TD> 
 <TD> <?php echo $row['commentaire'] ?> </TD> 
-<TD> <?php echo $row['date'] ?> </TD> 
+ <TD> <?php echo $row['type'] ?></TD>  
 <TD> <button type="submit" class="btn btn-success" ><a href="mail.php?mail=<?php echo $row['mail'];?>">
    Envoyer mail </a></button></TD>
 
@@ -219,7 +217,7 @@ function showUser(str) {
 		<?php
 }
 else{
-	header('location:index.php');
+	header('location:avisBack.php');
 }
 
 ?>

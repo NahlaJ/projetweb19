@@ -124,12 +124,12 @@ $listereclamation=$reclamation1C->afficherReclamation();
 
 
 
-<table border="1">
+<table border="3">
 <tr>
 <td>Cin</td>
 <td>mail</td>
 <td>sujet</td>
-<td>prenom</td>
+<td>message</td>
 
 <td>supprimer</td>
 <td>modifier</td>
